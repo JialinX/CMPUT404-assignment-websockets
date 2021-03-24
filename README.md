@@ -59,3 +59,9 @@ Contributors
 * Mark Galloway
 * Abram Hindle
 * Cole Mackenzie
+
+Reference
+============
+In sockets.py, functions send_all, send_all_json, read_ws, subscribe_socket, and class Client 
+are referenced by our class github examples
+https://github.com/abramhindle/WebSocketsExamples/blob/master/broadcaster.py
