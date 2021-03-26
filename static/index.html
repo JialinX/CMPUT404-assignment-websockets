@@ -262,7 +262,14 @@ function wsSetup() {
     socket = new WebSocket(url);
     socket.onopen = function() {
         //XXX: TODO What are you going to do here?
-        drawFrame();
+        // init the world with previous entities
+        fetch('/world')
+            .then((response) => {response.json()
+            .then((data) => {
+                world = data;
+                drawNextFrame();
+            });
+        });
     };
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);

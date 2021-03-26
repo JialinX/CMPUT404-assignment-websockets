@@ -102,11 +102,13 @@ def read_ws(ws,client):
             msg = ws.receive()
             if (msg is not None):
                 packet = json.loads(msg)
-                send_all_json( packet )
+                # set all entity on myWord
+                for entity in packet:
+                    myWorld.set(entity, packet[entity])
             else:
                 break
-    except Exception as e:
-        print(e)
+    except:
+        pass
 
 @sockets.route('/subscribe')
 def subscribe_socket(ws):
@@ -121,8 +123,8 @@ def subscribe_socket(ws):
             # block here
             msg = client.get()
             ws.send(msg)
-    except Exception as e:
-        print ("WS Error %s" % e)
+    except:
+        pass
     finally:
         clients.remove(client)
         gevent.kill(g)
